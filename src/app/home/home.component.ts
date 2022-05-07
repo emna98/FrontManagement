@@ -20,7 +20,9 @@ import { FormateurService } from '../service/formateur.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  user:any;
+  Currentuser:any;
+  role:string;
   showFiller = false;
   
   constructor(private tokenStorageService: TokenStorageService, public dialog: MatDialog, private router: Router,
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-    this.formateurService.getFormateurs()
+  /*  this.formateurService.getFormateurs()
     .subscribe({
       next:(res)=>{
         console.log(res);
@@ -36,7 +38,11 @@ export class HomeComponent implements OnInit {
       error:(err)=>{
         console.log(err);
       }
-    })
+    })*/
+    this.user = window.sessionStorage.getItem('auth-user');
+    this.Currentuser =JSON.parse(this.user);
+    this.role= this.Currentuser.roles[0];
+    console.log(this.Currentuser.roles[0]);
   }
   
   logout(): void {

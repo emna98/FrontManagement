@@ -24,13 +24,21 @@ import { HomeComponent } from './home/home.component';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DomaineComponent } from './domaine/domaine.component';
+import { PaysComponent } from './pays/pays.component';
+import { UserComponent } from './user/user.component';
+import { OrganismeComponent } from './organisme/organisme.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DomaineComponent
+    DomaineComponent,
+    PaysComponent,
+    UserComponent,
+    OrganismeComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +64,7 @@ import { DomaineComponent } from './domaine/domaine.component';
     MatSortModule
     
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

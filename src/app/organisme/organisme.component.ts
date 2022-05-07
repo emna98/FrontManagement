@@ -6,47 +6,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { DomaineService } from '../service/domaine.service';
+import { OrganismeService } from '../service/organisme.service';
 import { TokenStorageService } from '../service/token-storage.service';
 
-
 @Component({
-  selector: 'app-domaine',
-  templateUrl: './domaine.component.html',
-  styleUrls: ['./domaine.component.css']
+  selector: 'app-organisme',
+  templateUrl: './organisme.component.html',
+  styleUrls: ['./organisme.component.css']
 })
-export class DomaineComponent implements OnInit {
-  user:any;
-  Currentuser:any;
-  role:string;
+export class OrganismeComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'Libelle', 'Actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  ajoutDomaineForm !: FormGroup;
-  modifierDomaineForm !: FormGroup;
-  domaines:any;
+  ajoutOrganismeForm !: FormGroup;
+  modifierOrganismeForm !: FormGroup;
+  organismes:any;
   objectToEdit: any;
   idSupp: any;
-  
   constructor(private tokenStorageService: TokenStorageService,
-    public dialog: MatDialog, private formBuilder : FormBuilder, private domaineService : DomaineService,
+    public dialog: MatDialog, private formBuilder : FormBuilder, private organismeService : OrganismeService,
     private _snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
-    this.afficherDomaines();
-    this.ajoutDomaineForm = this.formBuilder.group(
+    this.afficherOrganisme();
+    this.ajoutOrganismeForm = this.formBuilder.group(
       {
        libelle : ['', Validators.required] 
-      }),
-      this.user = window.sessionStorage.getItem('auth-user');
-      this.Currentuser =JSON.parse(this.user);
-      this.role= this.Currentuser.roles[0];
-      console.log(this.Currentuser.roles[0]);
+      })
   }
-
   openDialog(mymodal: any, row: any) {
     const dialogRef = this.dialog.open(mymodal, {
       width: '30%'
@@ -54,7 +44,7 @@ export class DomaineComponent implements OnInit {
     if(row){
       this.objectToEdit = row;
       console.log(this.objectToEdit);
-      this.modifierDomaineForm = this.formBuilder.group(
+      this.modifierOrganismeForm = this.formBuilder.group(
         {
           id: [ this.objectToEdit.id ],
           libelle : [this.objectToEdit.libelle , Validators.required] 
@@ -70,8 +60,8 @@ export class DomaineComponent implements OnInit {
     this.idSupp = id;
   }
 
-  afficherDomaines():void {
-    this.domaineService.getDomaines()
+  afficherOrganisme():void {
+    this.organismeService.getOrganisme()
       .subscribe({
         next:(res)=>{
           this.dataSource = new MatTableDataSource(res);
@@ -80,65 +70,65 @@ export class DomaineComponent implements OnInit {
           console.log(this.dataSource);
         },
         error:(err)=>{
-          this.openSnackBar("Erreur d'affichage de domaines!!", "OOPS");
+          this.openSnackBar("Erreur d'affichage de organismes!!", "OOPS");
           console.log(err);
         }
       })
   }
 
-  ajouterDomaine(): void {
-    console.log(this.ajoutDomaineForm.value);
-    if(this.ajoutDomaineForm.valid)
+  ajouterOrganisme(): void {
+    console.log(this.ajoutOrganismeForm.value);
+    if(this.ajoutOrganismeForm.valid)
     {
-      this.domaineService.addDomaines(this.ajoutDomaineForm.value)
+      this.organismeService.addOrganisme(this.ajoutOrganismeForm.value)
       .subscribe({
         next:(res)=>{
-          this.ajoutDomaineForm.reset();
+          this.ajoutOrganismeForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Domaine ajouté avec succés!!", "Ok");
+          this.openSnackBar("Organisme ajouté avec succés!!", "Ok");
           this.ngOnInit();
         },
         error:()=>{
-          this.ajoutDomaineForm.reset();
+          this.ajoutOrganismeForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Erreur d'ajout de domaine!!", "OOPS");
+          this.openSnackBar("Erreur d'ajout d'organisme !!", "OOPS");
         }
       })
     }
   }
 
-  modifierDomaine() {
+  modifierOrganisme() {
     console.log(this.objectToEdit);
-    if(this.modifierDomaineForm.valid)
+    if(this.modifierOrganismeForm.valid)
     {
-      this.domaineService.updateDomaines(this.modifierDomaineForm.value)
+      this.organismeService.updateOrganisme(this.modifierOrganismeForm.value)
       .subscribe({
         next:(res)=>{
-          this.modifierDomaineForm.reset();
+          this.modifierOrganismeForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Domaine modifié avec succés!!", "Ok");
+          this.openSnackBar("Organisme modifié avec succés!!", "Ok");
           this.ngOnInit();
         },
         error:()=>{
-          this.modifierDomaineForm.reset();
+          this.modifierOrganismeForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Erreur de modification de domaine!!", "OOPS");
+          this.openSnackBar("Erreur de modification d'organisme !!", "OOPS");
         }
       })
     }
   }
 
-  supprimerDomaine(){
-    this.domaineService.deleteDomaines(this.idSupp)
+  supprimerOrganisme(){
+    this.organismeService.deleteOrganisme(this.idSupp)
     .subscribe({
       next:(res)=>{
         this.dialog.closeAll();
-        this.openSnackBar("Domaine supprimé avec succés!!", "Ok");
+        this.openSnackBar("Oragnisme supprimé avec succés!!", "Ok");
         this.ngOnInit();
       },
       error:()=>{
         this.dialog.closeAll();
-        this.openSnackBar("Erreur de suppression de domaine!!", "OOPS");
+        this.openSnackBar("Erreur de suppression d'organisme !!", "OOPS");
       }
     })
   }

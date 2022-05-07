@@ -6,45 +6,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { DomaineService } from '../service/domaine.service';
+import { PaysService } from '../service/pays.service';
 import { TokenStorageService } from '../service/token-storage.service';
-
-
 @Component({
-  selector: 'app-domaine',
-  templateUrl: './domaine.component.html',
-  styleUrls: ['./domaine.component.css']
+  selector: 'app-pays',
+  templateUrl: './pays.component.html',
+  styleUrls: ['./pays.component.css']
 })
-export class DomaineComponent implements OnInit {
-  user:any;
-  Currentuser:any;
-  role:string;
-  displayedColumns: string[] = ['ID', 'Libelle', 'Actions'];
+export class PaysComponent implements OnInit {
+  displayedColumns: string[] = ['ID', 'Nom', 'Actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  ajoutDomaineForm !: FormGroup;
-  modifierDomaineForm !: FormGroup;
-  domaines:any;
+  ajoutPaysForm !: FormGroup;
+  modifierPaysForm !: FormGroup;
+  pays:any;
   objectToEdit: any;
   idSupp: any;
   
   constructor(private tokenStorageService: TokenStorageService,
-    public dialog: MatDialog, private formBuilder : FormBuilder, private domaineService : DomaineService,
+    public dialog: MatDialog, private formBuilder : FormBuilder, private paysService : PaysService,
     private _snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
-    this.afficherDomaines();
-    this.ajoutDomaineForm = this.formBuilder.group(
+    this.afficherPays();
+    this.ajoutPaysForm = this.formBuilder.group(
       {
-       libelle : ['', Validators.required] 
-      }),
-      this.user = window.sessionStorage.getItem('auth-user');
-      this.Currentuser =JSON.parse(this.user);
-      this.role= this.Currentuser.roles[0];
-      console.log(this.Currentuser.roles[0]);
+       nom : ['', Validators.required] 
+      })
   }
 
   openDialog(mymodal: any, row: any) {
@@ -54,10 +45,10 @@ export class DomaineComponent implements OnInit {
     if(row){
       this.objectToEdit = row;
       console.log(this.objectToEdit);
-      this.modifierDomaineForm = this.formBuilder.group(
+      this.modifierPaysForm = this.formBuilder.group(
         {
           id: [ this.objectToEdit.id ],
-          libelle : [this.objectToEdit.libelle , Validators.required] 
+          nom : [this.objectToEdit.nom , Validators.required] 
         })
         
     }
@@ -70,8 +61,8 @@ export class DomaineComponent implements OnInit {
     this.idSupp = id;
   }
 
-  afficherDomaines():void {
-    this.domaineService.getDomaines()
+  afficherPays():void {
+    this.paysService.getPays()
       .subscribe({
         next:(res)=>{
           this.dataSource = new MatTableDataSource(res);
@@ -80,65 +71,65 @@ export class DomaineComponent implements OnInit {
           console.log(this.dataSource);
         },
         error:(err)=>{
-          this.openSnackBar("Erreur d'affichage de domaines!!", "OOPS");
+          this.openSnackBar("Erreur d'affichage de pays!!", "OOPS");
           console.log(err);
         }
       })
   }
 
-  ajouterDomaine(): void {
-    console.log(this.ajoutDomaineForm.value);
-    if(this.ajoutDomaineForm.valid)
+  ajouterPays(): void {
+    console.log(this.ajoutPaysForm.value);
+    if(this.ajoutPaysForm.valid)
     {
-      this.domaineService.addDomaines(this.ajoutDomaineForm.value)
+      this.paysService.addPays(this.ajoutPaysForm.value)
       .subscribe({
         next:(res)=>{
-          this.ajoutDomaineForm.reset();
+          this.ajoutPaysForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Domaine ajouté avec succés!!", "Ok");
+          this.openSnackBar("Pays ajouté avec succés!!", "Ok");
           this.ngOnInit();
         },
         error:()=>{
-          this.ajoutDomaineForm.reset();
+          this.ajoutPaysForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Erreur d'ajout de domaine!!", "OOPS");
+          this.openSnackBar("Erreur d'ajout de pays!!", "OOPS");
         }
       })
     }
   }
 
-  modifierDomaine() {
+  modifierPays() {
     console.log(this.objectToEdit);
-    if(this.modifierDomaineForm.valid)
+    if(this.modifierPaysForm.valid)
     {
-      this.domaineService.updateDomaines(this.modifierDomaineForm.value)
+      this.paysService.updatePays(this.modifierPaysForm.value)
       .subscribe({
         next:(res)=>{
-          this.modifierDomaineForm.reset();
+          this.modifierPaysForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Domaine modifié avec succés!!", "Ok");
+          this.openSnackBar("Pays modifié avec succés!!", "Ok");
           this.ngOnInit();
         },
         error:()=>{
-          this.modifierDomaineForm.reset();
+          this.modifierPaysForm.reset();
           this.dialog.closeAll();
-          this.openSnackBar("Erreur de modification de domaine!!", "OOPS");
+          this.openSnackBar("Erreur de modification de Pays!!", "OOPS");
         }
       })
     }
   }
 
-  supprimerDomaine(){
-    this.domaineService.deleteDomaines(this.idSupp)
+  supprimerPays(){
+    this.paysService.deletePays(this.idSupp)
     .subscribe({
       next:(res)=>{
         this.dialog.closeAll();
-        this.openSnackBar("Domaine supprimé avec succés!!", "Ok");
+        this.openSnackBar("Pays supprimé avec succés!!", "Ok");
         this.ngOnInit();
       },
       error:()=>{
         this.dialog.closeAll();
-        this.openSnackBar("Erreur de suppression de domaine!!", "OOPS");
+        this.openSnackBar("Erreur de suppression de Pays!!", "OOPS");
       }
     })
   }
@@ -155,7 +146,4 @@ export class DomaineComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-
-
 }

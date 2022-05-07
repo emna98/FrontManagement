@@ -67,15 +67,15 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
       <mat-nav-list >
         <a class="liste" mat-list-item routerLink="/home" ><mat-icon>home</mat-icon>  Home</a>
-        <a class="liste" mat-list-item routerLink="/home/user" > <mat-icon>account_box</mat-icon>  Utilisateurs</a>
-        <a class="liste" mat-list-item routerLink="/home/domaine" ><mat-icon>stars</mat-icon> Domaine</a>
-        <a class="liste" mat-list-item routerLink="/home/formateur" ><mat-icon>perm_contact_calendar</mat-icon> Formateur</a>
-        <a class="liste" mat-list-item routerLink="/home/formation" ><mat-icon>book</mat-icon>  Formation</a>
-        <a class="liste" mat-list-item routerLink="/home/organisme" ><mat-icon>account_balance</mat-icon>  Organisme</a>
-        <a class="liste" mat-list-item routerLink="/home/participant" ><mat-icon>supervisor_account</mat-icon>  Participant</a>
-        <a class="liste" mat-list-item routerLink="/home/pays"><mat-icon>language</mat-icon> Pays</a>
-        <a class="liste" mat-list-item routerLink="/home/session" > <mat-icon>date_range</mat-icon>  Sessions</a>
-        <a class="liste" mat-list-item routerLink="/home/profil" ><mat-icon>work</mat-icon> Profil</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/user" > <mat-icon>account_box</mat-icon>  Utilisateurs</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/domaine" ><mat-icon>stars</mat-icon> Domaine</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_USER'" mat-list-item routerLink="/home/formateur" ><mat-icon>perm_contact_calendar</mat-icon> Formateur</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/formation" ><mat-icon>book</mat-icon>  Formation</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/organisme" ><mat-icon>account_balance</mat-icon>  Organisme</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_USER'" mat-list-item routerLink="/home/participant" ><mat-icon>supervisor_account</mat-icon>  Participant</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/pays"><mat-icon>language</mat-icon> Pays</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_USER'" mat-list-item routerLink="/home/session" > <mat-icon>date_range</mat-icon>  Sessions</a>
+        <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/profil" ><mat-icon>work</mat-icon> Profil</a>
       </mat-nav-list>
     </mat-drawer>
   

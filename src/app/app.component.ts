@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TokenStorageService } from './service/token-storage.service';
-
+import { LoginComponent } from './login/login.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,15 +15,17 @@ export class AppComponent {
   showAdminBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService,
+    private login:LoginComponent,
+    private router:Router) { }
   ngOnInit(): void {
     
     this.isLoggedIn = !!this.tokenStorageService.getToken();
+    console.log(this.isLoggedIn)
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.username = user.username;
+      this.router.navigate(['home']);
+        } else {
+          this.router.navigate(['login']);
     }
   }
   

@@ -26,7 +26,7 @@
   
   
   input[type=button], input[type=submit], input[type=reset], button  {
-    background-color: #3d95cf;
+    background-color: #3f51b5;
     border: none;
     color: white;
     padding: 15px 10px;
@@ -48,7 +48,7 @@
   }
   
   input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #3d95cf;
+    background-color: #3f51b5;
   }
   
   input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -82,7 +82,7 @@
   
   input[type=text]:focus, input[type=password]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #3d95cf;
+    border-bottom: 2px solid #3f51b5;
   }
   
   input[type=text]:placeholder, input[type=password]:placeholder {
@@ -180,7 +180,7 @@
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #3d95cf;
+    background-color: #3f51b5;
     content: "";
     transition: width 0.2s;
   }
@@ -203,9 +203,8 @@
   
   body
   {
-      background-color: #0d0d0d;
-     /*background-image: url("../../assets/image1.jpg");
+     background-image: url("../../assets/Capture.PNG");
      background-repeat: no-repeat;
      background-size: cover;
-     background-position: center;*/
+     background-position: center;
   }

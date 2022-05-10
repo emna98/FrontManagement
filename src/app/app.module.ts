@@ -15,6 +15,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +31,10 @@ import { PaysComponent } from './pays/pays.component';
 import { UserComponent } from './user/user.component';
 import { OrganismeComponent } from './organisme/organisme.component';
 import { ProfilComponent } from './profil/profil.component';
+import { FormateurComponent } from './formateur/formateur.component';
+import { ParticipantComponent } from './participant/participant.component';
+import { FormationComponent } from './formation/formation.component';
+import { SessionComponent } from './session/session.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +45,11 @@ import { ProfilComponent } from './profil/profil.component';
     PaysComponent,
     UserComponent,
     OrganismeComponent,
-    ProfilComponent
+    ProfilComponent,
+    FormateurComponent,
+    ParticipantComponent,
+    FormationComponent,
+    SessionComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +72,10 @@ import { ProfilComponent } from './profil/profil.component';
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatGridListModule
     
   ],
   providers: [authInterceptorProviders,LoginComponent],

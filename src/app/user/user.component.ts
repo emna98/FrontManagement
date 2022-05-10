@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
       this.ajoutUserForm = this.formBuilder.group(
         {
          username : ['', Validators.required] ,
-         email : ['', Validators.required,Validators.email] ,
+         email : ['', Validators.required] ,
          password : ['', Validators.required] 
         
         })

@@ -7,6 +7,11 @@ import { ProfilComponent } from './profil/profil.component';
 import { UserComponent } from './user/user.component';
 import { OrganismeComponent } from './organisme/organisme.component';
 import { PaysComponent } from './pays/pays.component';
+import { FormateurComponent } from './formateur/formateur.component';
+import { ParticipantComponent } from './participant/participant.component';
+import { FormationComponent } from './formation/formation.component';
+import { SessionComponent } from './session/session.component';
+
 const routes: Routes = [
   { path: "" , component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -16,7 +21,11 @@ const routes: Routes = [
         { path: 'user', component: UserComponent },
         { path: 'organisme', component: OrganismeComponent },
         { path: 'profil', component: ProfilComponent },
-        {path: 'pays' , component:PaysComponent}
+        { path: 'pays' , component: PaysComponent},
+        { path: 'formateur' , component: FormateurComponent},
+        { path: 'participant' , component: ParticipantComponent},
+        { path: 'formation' , component: FormationComponent},
+        { path: 'session' , component: SessionComponent}
       ]}
 ];
 

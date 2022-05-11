@@ -27,4 +27,8 @@ export class ParticipantService {
   deleteParticipant(id : number): Observable<any> {
     return this.http.delete<any>(API_URL + 'delete/'+id, { headers });
   }
+
+  getTypes(): Observable<any> {
+    return this.http.get(API_URL + 'typecount', { responseType: 'json' });
+  }
 }

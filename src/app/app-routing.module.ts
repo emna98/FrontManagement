@@ -11,6 +11,7 @@ import { FormateurComponent } from './formateur/formateur.component';
 import { ParticipantComponent } from './participant/participant.component';
 import { FormationComponent } from './formation/formation.component';
 import { SessionComponent } from './session/session.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: "" , component: LoginComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
         { path: 'formateur' , component: FormateurComponent},
         { path: 'participant' , component: ParticipantComponent},
         { path: 'formation' , component: FormationComponent},
-        { path: 'session' , component: SessionComponent}
+        { path: 'session' , component: SessionComponent},
+        { path: 'dashboard' , component: DashboardComponent}
       ]}
 ];
 

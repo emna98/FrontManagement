@@ -23,7 +23,7 @@ export class AppComponent {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     console.log(this.isLoggedIn)
     if (this.isLoggedIn) {
-      this.router.navigate(['home']);
+      this.router.navigate(['home/dashboard']); 
         } else {
           this.router.navigate(['login']);
     }

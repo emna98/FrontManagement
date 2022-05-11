@@ -8,12 +8,24 @@
     padding: 10px;
     
   }
+
+.over {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.322);
+}  
+
+.image {
+  margin: 1%;
+  width: 70%; 
+  height: 85%;
+  border-radius: 15px;
+}
   
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: rgba(255, 255, 255, 0.199);
-    padding: 10px;
+    background: rgba(116, 108, 230, 0.377);
+    padding: 10px;  
     width: 90%;
     max-width: 450px;
     position: relative;

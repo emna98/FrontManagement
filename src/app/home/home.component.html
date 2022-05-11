@@ -56,7 +56,7 @@
       <mat-icon>menu</mat-icon>
     </button-->
 
-    <img src="../../assets/Gestion.png" style="width: 10%; height: 85%;" (click)="drawer.toggle()">
+    <img src="../../assets/Gestion.png" style="width: 10%; height: 85%; border-radius: 10px;" (click)="drawer.toggle()">
     <span class="example-spacer"></span>
     
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
@@ -67,7 +67,7 @@
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
       <mat-nav-list >
-        <a class="liste" mat-list-item routerLink="/home" ><mat-icon>home</mat-icon>  Home</a>
+        <a class="liste" mat-list-item routerLink="/home/dashboard" ><mat-icon>home</mat-icon>  Home</a>
         <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/user" > <mat-icon>account_box</mat-icon>  Utilisateurs</a>
         <a class="liste" *ngIf="this.role == 'ROLE_ADMIN'" mat-list-item routerLink="/home/domaine" ><mat-icon>stars</mat-icon> Domaine</a>
         <a class="liste" *ngIf="this.role == 'ROLE_USER'" mat-list-item routerLink="/home/formateur" ><mat-icon>perm_contact_calendar</mat-icon> Formateur</a>

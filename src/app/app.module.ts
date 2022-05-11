@@ -18,6 +18,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { NgChartsModule } from 'ng2-charts';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +36,10 @@ import { FormateurComponent } from './formateur/formateur.component';
 import { ParticipantComponent } from './participant/participant.component';
 import { FormationComponent } from './formation/formation.component';
 import { SessionComponent } from './session/session.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -49,7 +54,8 @@ import { SessionComponent } from './session/session.component';
     FormateurComponent,
     ParticipantComponent,
     FormationComponent,
-    SessionComponent
+    SessionComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +81,11 @@ import { SessionComponent } from './session/session.component';
     MatSortModule,
     MatSelectModule,
     MatRadioModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    LayoutModule,
+    NgChartsModule
     
   ],
   providers: [authInterceptorProviders,LoginComponent],
